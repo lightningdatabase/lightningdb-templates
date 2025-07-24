@@ -1,0 +1,31 @@
+{
+  "name": "express",
+  "version": "1.0.0",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "@lightningdb/auth-clerk": "^0.0.3",
+    "@lightningdb/server": "^0.1.13",
+    "@prisma/client": "6.5.0",
+    "@zenstackhq/runtime": "^2.12.3",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "@lightningdb/plugin": "^0.1.13",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.15.23",
+    "prisma": "6.5.x",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2",
+    "vitest": "^3.1.1",
+    "vitest-mock-extended": "^3.1.0",
+    "zenstack": "^2.12.3"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  }
+}
