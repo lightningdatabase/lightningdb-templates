@@ -31,7 +31,7 @@ model Post {
   published Boolean  @default(false)
   viewCount Int      @default(0)
   author    User?    @relation(fields: [authorId], references: [id])
-  authorId  Int?     @default(auth().id)
+  authorId  Int?
 
   @@allow('all', true)
 
