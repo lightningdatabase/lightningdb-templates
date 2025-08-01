@@ -9,10 +9,11 @@ import {
   baseUseQuery,
   generateProvider,
   type SelectSubset,
+  type QueryType,
 } from "@lightningdb/client";
 import { LightningDB } from "./schema";
 
-const useQuery = <Query extends LightningDB.TopLevelQueries>(
+const useQuery = <Query extends QueryType>(
   query: SelectSubset<
     Query,
     LightningDB.TopLevelQueries,

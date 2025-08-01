@@ -9,13 +9,13 @@
   },
   "dependencies": {
     "@lightningdb/auth-clerk": "^0.0.3",
-    "@lightningdb/server": "^0.1.16",
+    "@lightningdb/server": "^0.1.17",
     "@prisma/client": "6.5.0",
     "@zenstackhq/runtime": "^2.12.3",
     "express": "^5.1.0"
   },
   "devDependencies": {
-    "@lightningdb/plugin": "^0.1.16",
+    "@lightningdb/plugin": "^0.1.17",
     "@types/express": "^5.0.0",
     "@types/node": "^22.15.23",
     "prisma": "6.5.x",
