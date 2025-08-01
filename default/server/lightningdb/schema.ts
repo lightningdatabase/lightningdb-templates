@@ -12,6 +12,7 @@ import {
   SortOrder,
   StringFilter,
   StringNullableFilter,
+  StringNullableListFilter,
 } from "@lightningdb/server/types"
 import type { Includes } from "@lightningdb/server/types"
 
@@ -22,13 +23,15 @@ const UserListRelationFilter: z.ZodType<
       none?: z.infer<typeof UserWhereInput>
     }
   | undefined
-> = z.lazy(() => z
-  .object({
-    every: UserWhereInput,
-    some: UserWhereInput,
-    none: UserWhereInput,
-  })
-  .optional())
+> = z.lazy(() =>
+  z
+    .object({
+      every: UserWhereInput,
+      some: UserWhereInput,
+      none: UserWhereInput,
+    })
+    .optional(),
+)
 
 const PostListRelationFilter: z.ZodType<
   | {
@@ -37,13 +40,15 @@ const PostListRelationFilter: z.ZodType<
       none?: z.infer<typeof PostWhereInput>
     }
   | undefined
-> = z.lazy(() => z
-  .object({
-    every: PostWhereInput,
-    some: PostWhereInput,
-    none: PostWhereInput,
-  })
-  .optional())
+> = z.lazy(() =>
+  z
+    .object({
+      every: PostWhereInput,
+      some: PostWhereInput,
+      none: PostWhereInput,
+    })
+    .optional(),
+)
 
 const UserWhereInput = z
   .object({
@@ -51,7 +56,6 @@ const UserWhereInput = z
     email: z.union([z.string(), StringFilter]).optional(),
     name: z.union([z.string(), StringNullableFilter]).optional().nullable(),
     posts: PostListRelationFilter,
-    
   })
   .optional()
 
@@ -65,7 +69,7 @@ const PostWhereInput = z
     published: z.union([z.boolean(), BoolFilter]).optional(),
     viewCount: z.union([z.number(), IntFilter]).optional(),
     authorId: z.union([z.number(), IntNullableFilter]).optional().nullable(),
-    
+
     author: UserWhereInput.nullable(),
   })
   .optional()
@@ -178,7 +182,7 @@ export const lightningSchema = z.object({
                 data: z.object({
                   id: z.number().optional(),
                   email: z.string(),
-                  name: z.string().nullable(),
+                  name: z.string().optional().nullable(),
                 }),
               })
               .optional(),
@@ -188,7 +192,7 @@ export const lightningSchema = z.object({
                   z.object({
                     id: z.number().optional(),
                     email: z.string(),
-                    name: z.string().nullable(),
+                    name: z.string().optional().nullable(),
                   }),
                 ),
               })
@@ -245,7 +249,7 @@ export const lightningSchema = z.object({
                 create: z.object({
                   id: z.number().optional(),
                   email: z.string(),
-                  name: z.string().nullable(),
+                  name: z.string().optional().nullable(),
                 }),
                 update: z.object({
                   id: z.number().optional(),
@@ -289,9 +293,9 @@ export const lightningSchema = z.object({
                 data: z.object({
                   id: z.number().optional(),
                   createdAt: z.coerce.date().optional(),
-                  updatedAt: z.coerce.date(),
+                  updatedAt: z.coerce.date().optional(),
                   title: z.string(),
-                  content: z.string().nullable(),
+                  content: z.string().optional().nullable(),
                   published: z.boolean().optional(),
                   viewCount: z.number().optional(),
                   authorId: z.number().optional().nullable(),
@@ -304,9 +308,9 @@ export const lightningSchema = z.object({
                   z.object({
                     id: z.number().optional(),
                     createdAt: z.coerce.date().optional(),
-                    updatedAt: z.coerce.date(),
+                    updatedAt: z.coerce.date().optional(),
                     title: z.string(),
-                    content: z.string().nullable(),
+                    content: z.string().optional().nullable(),
                     published: z.boolean().optional(),
                     viewCount: z.number().optional(),
                     authorId: z.number().optional().nullable(),
@@ -320,12 +324,9 @@ export const lightningSchema = z.object({
                   .object({
                     id: z.number().optional(),
                   })
-                  .refine(
-                    data => data.id !== undefined,
-                    {
-                      message: "id must be provided",
-                    },
-                  ),
+                  .refine(data => data.id !== undefined, {
+                    message: "id must be provided",
+                  }),
                 data: z.object({
                   id: z.number().optional(),
                   createdAt: z.coerce.date().optional(),
@@ -370,18 +371,15 @@ export const lightningSchema = z.object({
                   .object({
                     id: z.number().optional(),
                   })
-                  .refine(
-                    data => data.id !== undefined,
-                    {
-                      message: "id must be provided",
-                    },
-                  ),
+                  .refine(data => data.id !== undefined, {
+                    message: "id must be provided",
+                  }),
                 create: z.object({
                   id: z.number().optional(),
                   createdAt: z.coerce.date().optional(),
-                  updatedAt: z.coerce.date(),
+                  updatedAt: z.coerce.date().optional(),
                   title: z.string(),
-                  content: z.string().nullable(),
+                  content: z.string().optional().nullable(),
                   published: z.boolean().optional(),
                   viewCount: z.number().optional(),
                   authorId: z.number().optional().nullable(),
@@ -404,12 +402,9 @@ export const lightningSchema = z.object({
                   .object({
                     id: z.number().optional(),
                   })
-                  .refine(
-                    data => data.id !== undefined,
-                    {
-                      message: "id must be provided",
-                    },
-                  ),
+                  .refine(data => data.id !== undefined, {
+                    message: "id must be provided",
+                  }),
               })
               .optional(),
             deleteMany: z

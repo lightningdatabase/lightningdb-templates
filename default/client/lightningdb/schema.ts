@@ -14,6 +14,7 @@ import type {
   SortOrder,
   StringFilter,
   StringNullableFilter,
+  StringNullableListFilter,
   Includes,
   ExclusiveOneOf,
 } from "@lightningdb/client/baseTypes"
@@ -290,7 +291,7 @@ export namespace LightningDB {
     data: {
       id?: number
       createdAt?: Date
-      updatedAt: Date
+      updatedAt?: Date
       title: string
       content?: string | null
       published?: boolean
@@ -303,7 +304,7 @@ export namespace LightningDB {
     data: {
       id?: number
       createdAt?: Date
-      updatedAt: Date
+      updatedAt?: Date
       title: string
       content?: string | null
       published?: boolean
@@ -347,7 +348,7 @@ export namespace LightningDB {
     create: {
       id?: number
       createdAt?: Date
-      updatedAt: Date
+      updatedAt?: Date
       title: string
       content?: string | null
       published?: boolean
