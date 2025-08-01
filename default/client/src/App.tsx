@@ -6,6 +6,8 @@ import CreateUser from "./users/CreateUser"
 import DeleteUser from "./users/DeleteUser"
 import UpdateUser from "./users/UpdateUser"
 import UpdatePost from "./posts/UpdatePost"
+import { Playground } from "@lightningdb/playground"
+import types from "../lightningdb/schema.ts?raw"
 
 const App: React.FC = () => (
   <Container maxWidth="lg" sx={{ py: 4 }}>
@@ -24,6 +26,14 @@ const App: React.FC = () => (
     </Section>
     <Section title="Update Post">
       <UpdatePost />
+    </Section>
+    <Section title="Playground">
+      <Playground
+        types={types}
+        initialCode={`useQuery({
+  users: {},
+})`}
+      />
     </Section>
   </Container>
 )
