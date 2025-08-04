@@ -1,14 +1,20 @@
 {
-  "name": "express",
+  "name": "demo",
   "version": "1.0.0",
   "license": "MIT",
   "type": "module",
+  "engines": {
+    "node": "24.x"
+  },
   "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
     "dev": "tsx watch src/index.ts",
     "test": "vitest"
   },
   "dependencies": {
     "@lightningdb/server": "^0.1.17",
+    "@lightningdb/auth-ip": "^0.0.1",
     "@prisma/client": "6.5.0",
     "@zenstackhq/runtime": "^2.12.3",
     "express": "^5.1.0"
