@@ -16,7 +16,7 @@
     "@emotion/styled": "^11.14.0",
     "@fontsource/roboto": "^5.2.6",
     "@lightningdb/client": "^0.1.17",
-    "@lightningdb/playground": "^0.0.3",
+    "@lightningdb/playground": "^0.1.1",
     "@mui/icons-material": "^7.1.1",
     "@mui/material": "^7.1.1",
     "react": "^19.1.0",
